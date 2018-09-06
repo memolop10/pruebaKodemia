@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-resposive">
+
+            <h1>tabla usuarios</h1> <br />
+
+            <table class="table table-bordered table-striped" id="sampleJson">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function(){
+            $.getJSON("sampleJson.JSON",function(data){
+                    var sample_data = '';
+                    $.each(data,function(key, value){
+                        sample_data += '<tr>';
+                        sample_data += '<td>'+ value.name +'</td>';
+                        sample_data += '<td>'+ value.age +'</td>';
+                        sample_data += '<td>'+ value.email +'</td>';
+                        sample_data += '<td>'+ value.phone +'</td>';
+                        sample_data += '<td>'+ value.address +'</td>';
+                            sample_data += '</tr>';
+                    });
+
+                    $('#sampleJson').append(sample_data);
+            });
+        });
+</script>
+
+
+<div>
+    <form id="nuevo-usuario">
+        <div class="form-group">
+            <label for="">Nombre</label>
+            <input type="text" class="form-control" id="name">
+
+            <div class="form-group">
+                <label for="">Edad</label>
+                <input type="number" class="form-control" id="age">
+            </div>
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="text" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="">Telefono</label>
+                <input type="text" class="form-control" id="phone">
+            </div>
+            <div class="form-group">
+                <label for="">Direccion</label>
+                <input type="text" class="form-control" id="address">
+            </div>
+            <input type="submit" value="añadir usuario">
+    </form>
+</div>
+
+
+<script>
+    function cargareventos(){
+            document.getElementById("nuevo-usuario").addEventListener("submit", nuevoUsuario,false);
+    }
+
+    function nuevoUsuario(event){
+        event.preventDefault();
+
+        var namein = document.getElementById("name").value;
+        var agein = document.getElementById("age").value;
+        var emailin = document.getElementById("email").value;
+        var namein = document.getElementById("name").value;
+        var phonein = document.getElementById("phone").value;
+        var addressin = document.getElementById("adress").value;
+
+
+        var nuevoUsuario = {name: namein , age:agein ,  email: emailin, phone:phonein, address: addressin };
+
+        sampleJson.JSON.push(nuevoUsuario);
+    }
+
+</script>
