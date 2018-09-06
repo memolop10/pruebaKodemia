@@ -87,24 +87,36 @@
 
 
 <script>
-    function cargareventos(){
-            document.getElementById("nuevo-usuario").addEventListener("submit", nuevoUsuario,false);
-    }
-
-    function nuevoUsuario(event){
-        event.preventDefault();
-
-        var namein = document.getElementById("name").value;
-        var agein = document.getElementById("age").value;
-        var emailin = document.getElementById("email").value;
-        var namein = document.getElementById("name").value;
-        var phonein = document.getElementById("phone").value;
-        var addressin = document.getElementById("adress").value;
 
 
-        var nuevoUsuario = {name: namein , age:agein ,  email: emailin, phone:phonein, address: addressin };
+    var nuevoUsuarios={datos:[{name :''},{age:''},{email:''},{phone:''},{address:''}]};
 
-        sampleJson.JSON.push(nuevoUsuario);
-    }
+    var obj = JSON.parse(nuevoUsuarios);
+
+    for (var i = 0; i < rows.length; i++) {
+     obj['datos'].push({"Nombre":rows[i].nombre,"Edad":rows[i].age,"Email":rows[i].email,"Telefono":rows[i].phone,"Direccion":rows[i].address});
+};
+
+    nuevoUsuarios= JSON.stringify(obj);
+    // function cargareventos(){
+    //         document.getElementById("nuevo-usuario").addEventListener("submit", nuevoUsuario,false);
+    // }
+
+    // function nuevoUsuario(event){
+    //     event.preventDefault();
+
+    //     var namein = document.getElementById("name").value;
+    //     var agein = document.getElementById("age").value;
+    //     var emailin = document.getElementById("email").value;
+    //     var namein = document.getElementById("name").value;
+    //     var phonein = document.getElementById("phone").value;
+    //     var addressin = document.getElementById("adress").value;
+
+
+    //     var nuevoUsuario = {name: namein , age:agein ,  email: emailin, phone:phonein, address: addressin };
+    //     console.log(nuevoUsuario);
+    //     sample_data.push(nuevoUsuario);
+        
+    // }
 
 </script>
